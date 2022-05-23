@@ -20,11 +20,9 @@ lint: ## lint
 
 .PHONY: build
 build: ## build
-	mkdir -p build && \
-	cd build && \
-	cmake .. && \
-	make
+	cmake -S . -B build \
+		&& cmake --build build
 
 .PHONY: ci-test
 ci-test: lint build ## run ci test
-	./build/handson
+	cd build && ctest
